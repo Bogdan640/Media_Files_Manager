@@ -1,0 +1,38 @@
+<!-- src/app/componets/edit-media/edit-media.component.html -->
+<div class="container">
+  <h1>Edit Media File</h1>
+  <div id="update-result" [style.color]="updateSuccess ? 'green' : 'red'" *ngIf="updateResult">{{ updateResult }}</div>
+
+  <form (ngSubmit)="onSubmit()" #editForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="mediaData.title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="format-type">Format Type:</label>
+      <input type="text" id="format-type" name="format_type" [(ngModel)]="mediaData.format_type" required>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre:</label>
+      <select id="genre" name="genre_id" [(ngModel)]="mediaData.genre_id">
+        <option value="">Select Genre</option>
+        <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="file-path">File Path:</label>
+      <input type="text" id="file-path" name="file_path" [(ngModel)]="mediaData.file_path">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="mediaData.description"></textarea>
+    </div>
+
+    <button type="submit" class="btn">Update Media</button>
+    <a href="javascript:void(0)" class="btn btn-cancel" (click)="navigateToHome()">Cancel</a>
+  </form>
+</div>

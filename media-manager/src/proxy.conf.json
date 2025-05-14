@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "http://localhost:80/lab7_php/src/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<!-- src/app/componets/genre-management/genre-management.component.html -->
+<div class="container">
+  <h1>Manage Genres</h1>
+  <a href="javascript:void(0)" class="btn" (click)="navigateToHome()">Back to Media List</a>
+
+  <div id="genre-list-container">
+    <h2>Current Genres</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody id="genre-list">
+      <tr *ngIf="genres.length === 0">
+        <td colspan="2">No genres found.</td>
+      </tr>
+      <tr *ngFor="let genre of genres">
+        <td>{{ genre.name }}</td>
+        <td>
+          <button (click)="deleteGenre(genre.id, genre.name)" class="btn btn-delete">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-container">
+    <h2>Add New Genre</h2>
+    <input type="text" id="genre-name" [(ngModel)]="newGenreName" placeholder="Genre Name">
+    <button (click)="addGenre()" class="btn">Add Genre</button>
+    <p id="add-result">{{ addResult }}</p>
+  </div>
+</div>

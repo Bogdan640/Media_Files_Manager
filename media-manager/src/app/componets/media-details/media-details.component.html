@@ -1,0 +1,39 @@
+<!-- src/app/componets/media-details/media-details.component.html -->
+<div class="container">
+  <h1>Media Details</h1>
+
+  <div class="details">
+    <p *ngIf="loading">Loading...</p>
+    <p *ngIf="error">{{ error }}</p>
+
+    <ng-container *ngIf="mediaDetails && !loading">
+      <div class="detail-row">
+        <div class="label">Title:</div>
+        <div class="value">{{ mediaDetails.title }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="label">Format:</div>
+        <div class="value">{{ mediaDetails.format_type }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="label">Genre:</div>
+        <div class="value">{{ mediaDetails.genre || 'None' }}</div>
+      </div>
+      <!-- Remove or comment out file_path related elements -->
+      <!-- <div class="detail-row" *ngIf="mediaDetails.file_path">
+        <div class="label">File Path:</div>
+        <div class="value">{{ mediaDetails.file_path }}</div>
+      </div> -->
+      <div class="detail-row" *ngIf="mediaDetails.description">
+        <div class="label">Description:</div>
+        <div class="value description">{{ mediaDetails.description }}</div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="actions">
+    <a href="javascript:void(0)" class="btn" (click)="navigateToHome()">Back to List</a>
+    <a href="javascript:void(0)" class="btn btn-edit" (click)="navigateToEdit()">Edit</a>
+    <button class="btn btn-delete" (click)="deleteMedia()">Delete</button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Multimedia Collection</h1>
+
+  <div class="filter-container">
+    <label for="genre-filter">Filter by Genre:</label>
+    <select id="genre-filter" [(ngModel)]="selectedGenreId" (change)="filterByGenre()">
+      <option [value]="0">All Genres</option>
+      <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+    </select>
+  </div>
+
+  <a href="javascript:void(0)" class="btn" (click)="navigateToAdd()">Add New Media</a>
+  <a href="javascript:void(0)" class="btn" (click)="navigateToGenres()">Manage Genres</a>
+
+  <table id="media-table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Format</th>
+      <th>Genre</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="media-list">
+    <tr *ngIf="isLoading">
+      <td colspan="4">Loading media files...</td>
+    </tr>
+    <tr *ngIf="!isLoading && mediaItems.length === 0">
+      <td colspan="4">No media files found.</td>
+    </tr>
+    <tr *ngFor="let item of mediaItems">
+      <td>{{ item.title }}</td>
+      <td>{{ item.format_type }}</td>
+      <td>{{ item.genre || 'None' }}</td>
+      <td class="actions">
+        <a href="javascript:void(0)" (click)="viewMedia(item.id)" class="btn">View</a>
+        <a href="javascript:void(0)" (click)="editMedia(item.id)" class="btn btn-edit">Edit</a>
+        <button (click)="deleteMedia(item.id)" class="btn btn-delete">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
