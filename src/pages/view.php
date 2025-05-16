@@ -1,8 +1,6 @@
 <?php
-// src/pages/view.php
 require_once '../config.php';
 
-// Get the media ID from the URL
 $mediaId = isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!$mediaId) {
@@ -37,7 +35,6 @@ if (!$mediaId) {
     <h1>Media Details</h1>
 
     <div id="media-details" class="details">
-        <!-- Media details will be loaded via AJAX -->
         <p>Loading...</p>
     </div>
 
@@ -51,12 +48,10 @@ if (!$mediaId) {
 <script>
     const mediaId = '<?php echo $mediaId; ?>';
 
-    // Load media details when the page loads
     document.addEventListener('DOMContentLoaded', function() {
         loadMediaDetails(mediaId);
     });
 
-    // Function to load media details
     function loadMediaDetails(id) {
         fetch(`../api/api.php?action=media_details&id=${id}`)
             .then(response => {
@@ -66,10 +61,8 @@ if (!$mediaId) {
             .then(data => {
                 const detailsContainer = document.getElementById('media-details');
 
-                // Update edit link
                 document.getElementById('edit-link').href = `edit.php?id=${id}`;
 
-                // Format the details HTML
                 detailsContainer.innerHTML = `
                     <div class="detail-row">
                         <div class="label">Title:</div>
@@ -101,7 +94,6 @@ if (!$mediaId) {
             });
     }
 
-    // Handle delete button
     document.getElementById('delete-btn').addEventListener('click', function() {
         if (confirm('Are you sure you want to delete this media file?')) {
             fetch(`../api/api.php?action=delete_media&id=${mediaId}`, {

@@ -1,4 +1,4 @@
-// src/app/models/media.model.ts
+
 export interface Media {
   id: number;
   title: string;

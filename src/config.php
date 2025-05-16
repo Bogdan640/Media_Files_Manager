@@ -1,5 +1,4 @@
 <?php
-// config.php (place this in your project root)
 function getDbConnection() {
     $host = 'localhost';
     $db = 'multimedia_collection';

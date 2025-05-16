@@ -1,4 +1,3 @@
-// src/app/components/add-new-media/add-new-media.component.ts
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';

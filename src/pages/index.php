@@ -1,5 +1,4 @@
 <?php
-// src/pages/index.php
 require_once '../config.php';
 ?>
 
@@ -31,7 +30,6 @@ require_once '../config.php';
         <label for="genre-filter">Filter by Genre:</label>
         <select id="genre-filter">
             <option value="0">All Genres</option>
-            <!-- Genres will be loaded via AJAX -->
         </select>
     </div>
 
@@ -50,13 +48,11 @@ require_once '../config.php';
         </tr>
         </thead>
         <tbody id="media-list">
-        <!-- Media files will be loaded via AJAX -->
         </tbody>
     </table>
 </div>
 
 <script>
-    // Load genres for the filter
     fetch('../api/api.php?action=genres')
         .then(response => {
             if (!response.ok) throw new Error('Network error');
@@ -73,25 +69,20 @@ require_once '../config.php';
         })
         .catch(error => console.error('Error loading genres:', error));
 
-    // Load all media files initially
     loadMediaFiles();
 
-    // Add event listener for filter change
     document.getElementById('genre-filter').addEventListener('change', function() {
         const genreId = this.value;
         const genreName = this.options[this.selectedIndex].text;
 
         loadMediaFiles(genreId);
 
-        // Save filter to localStorage
         localStorage.setItem('lastGenreFilter', genreId);
         localStorage.setItem('lastGenreName', genreName);
 
-        // Display the last filter used
         document.getElementById('last-filter').textContent = `Last filter: ${genreName}`;
     });
 
-    // Function to load media files
     function loadMediaFiles(genreId = 0) {
         const url = genreId > 0 ? `../api/api.php?action=media_by_genre&genre_id=${genreId}` : '../api/api.php?action=media';
 
@@ -130,7 +121,6 @@ require_once '../config.php';
             .catch(error => console.error('Error loading media files:', error));
     }
 
-    // Function to delete media
     function deleteMedia(id) {
         if (confirm('Are you sure you want to delete this media file?')) {
             fetch(`../api/api.php?action=delete_media&id=${id}`, {
@@ -148,7 +138,6 @@ require_once '../config.php';
         }
     }
 
-    // Check if there's a saved filter
     document.addEventListener('DOMContentLoaded', function() {
         const lastGenreFilter = localStorage.getItem('lastGenreFilter');
         const lastGenreName = localStorage.getItem('lastGenreName');

@@ -1,17 +1,13 @@
 <?php
-// src/api/api.php
 header('Content-Type: application/json');
 ini_set('display_errors', 0); // Turn off display errors for API responses
 error_reporting(E_ALL); // Still report errors, but don't display them
 
-// Include the database connection
 require_once '../config.php';
 
-// Get the action parameter
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 try {
-    // Route the request based on the action
     switch ($action) {
         case 'genres':
             getGenres();
@@ -71,7 +67,7 @@ function getGenres() {
     }
 }
 
-// Function to add genre
+
 function addGenre($data) {
     if (!isset($data['name']) || empty($data['name'])) {
         http_response_code(400);
@@ -93,7 +89,6 @@ function addGenre($data) {
     }
 }
 
-// Function to delete genre
 function deleteGenre($id) {
     if (!$id) {
         http_response_code(400);
@@ -119,7 +114,7 @@ function deleteGenre($id) {
     }
 }
 
-// Function to get all media files
+
 function getMediaFiles() {
     try {
         $conn = getDbConnection();
@@ -137,7 +132,7 @@ function getMediaFiles() {
     }
 }
 
-// Function to get media files by genre
+
 function getMediaFilesByGenre($genreId) {
     if (!$genreId) {
         http_response_code(400);
@@ -164,7 +159,6 @@ function getMediaFilesByGenre($genreId) {
     }
 }
 
-// Function to get media file details
 function getMediaFileDetails($id) {
     if (!$id) {
         http_response_code(400);
@@ -196,7 +190,6 @@ function getMediaFileDetails($id) {
     }
 }
 
-// Function to add a new media file
 function addMediaFile($data) {
     if (!isset($data['title']) || empty($data['title']) || !isset($data['format_type']) || empty($data['format_type'])) {
         http_response_code(400);
@@ -231,7 +224,6 @@ function addMediaFile($data) {
     }
 }
 
-// Function to update media file
 function updateMediaFile($data) {
     if (!isset($data['id']) || empty($data['id']) || !isset($data['title']) || empty($data['title'])) {
         http_response_code(400);
@@ -270,7 +262,6 @@ function updateMediaFile($data) {
     }
 }
 
-// Function to delete media file
 function deleteMediaFile($id) {
     if (!$id) {
         http_response_code(400);

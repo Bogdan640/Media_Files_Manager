@@ -1,5 +1,4 @@
 <?php
-// src/pages/genres.php
 require_once '../config.php';
 ?>
 
@@ -35,7 +34,6 @@ require_once '../config.php';
             </tr>
             </thead>
             <tbody id="genre-list">
-            <!-- Genres will be loaded via AJAX -->
             </tbody>
         </table>
     </div>
@@ -49,10 +47,8 @@ require_once '../config.php';
 </div>
 
 <script>
-    // Load genres when the page loads
     document.addEventListener('DOMContentLoaded', loadGenres);
 
-    // Function to load genres
     function loadGenres() {
         fetch('../api/api.php?action=genres')
             .then(response => {
@@ -87,7 +83,6 @@ require_once '../config.php';
             });
     }
 
-    // Function to add a new genre
     function addGenre() {
         const genreName = document.getElementById('genre-name').value.trim();
 
@@ -120,7 +115,6 @@ require_once '../config.php';
             });
     }
 
-    // Function to delete a genre
     function deleteGenre(id, name) {
         if (confirm(`Are you sure you want to delete the genre "${name}"?`)) {
             fetch(`../api/api.php?action=delete_genre&id=${id}`, {
@@ -134,7 +128,7 @@ require_once '../config.php';
                 })
                 .then(data => {
                     alert(data.message);
-                    loadGenres(); // Reload the genre list
+                    loadGenres();
                 })
                 .catch(error => {
                     console.error('Error deleting genre:', error);

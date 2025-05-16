@@ -64,7 +64,6 @@ require_once '../config.php';
 </div>
 
 <script>
-    // Load genres for the dropdown
     fetch('../api/api.php?action=genres')
         .then(response => response.json())
         .then(data => {
@@ -78,7 +77,6 @@ require_once '../config.php';
         })
         .catch(error => console.error('Error loading genres:', error));
 
-    // Form submission
     document.getElementById('add-media-form').addEventListener('submit', function(e) {
         e.preventDefault();
 

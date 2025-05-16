@@ -1,8 +1,6 @@
 <?php
-// src/pages/edit.php
 require_once '../config.php';
 
-// Get the media ID from the URL
 $mediaId = isset($_GET['id']) ? $_GET['id'] : '';
 
 if (!$mediaId) {
@@ -53,7 +51,6 @@ if (!$mediaId) {
             <label for="genre">Genre:</label>
             <select id="genre" name="genre_id">
                 <option value="">Select Genre</option>
-                <!-- Genres will be loaded via AJAX -->
             </select>
         </div>
 
@@ -73,7 +70,6 @@ if (!$mediaId) {
 </div>
 
 <script>
-    // Load media details when the page loads
     document.addEventListener('DOMContentLoaded', function() {
         const mediaId = document.getElementById('media-id').value;
 
@@ -92,7 +88,6 @@ if (!$mediaId) {
                     genreSelect.appendChild(option);
                 });
 
-                // After loading genres, load media details
                 loadMediaDetails(mediaId);
             })
             .catch(error => console.error('Error loading genres:', error));

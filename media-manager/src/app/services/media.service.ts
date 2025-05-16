@@ -1,4 +1,3 @@
-// src/app/services/media.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +7,6 @@ import { Media } from '../models/media-model';
   providedIn: 'root'
 })
 export class MediaService {
-  // src/app/services/media.service.ts
   private apiUrl = '../api/api.php';  // Update to match your PHP API path
 
   constructor(private http: HttpClient) {}
